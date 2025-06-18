@@ -1,0 +1,20 @@
+@import "tailwindcss";
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #135819;
+}
+
+.grid-bg {
+  background-color: #ffffff00;
+  background-image: 
+    linear-gradient(to right, #ffffff1a 1px, transparent 1px),
+    linear-gradient(to bottom, #ffffff1a 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+.box {
+  width: 400px;
+  height: 400px;
+}
