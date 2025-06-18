@@ -2,12 +2,12 @@
 
 import { useState, useEffect } from "react";
 
-let Main = () => {
-  let [size, setSize] = useState(16);
-  let [mp, setMp] = useState({ x: 0, y: 0 });
-  let [circleSize, setCircleSize] = useState(400);
+const Main = () => {
+  const [size, setSize] = useState(16);
+  const [mp, setMp] = useState({ x: 0, y: 0 });
+  const [circleSize] = useState(400);
 
-  let handleMouseMove = (e: MouseEvent) => {
+  const handleMouseMove = (e: MouseEvent) => {
     setMp({ x: e.clientX, y: e.clientY });
   };
 
@@ -18,7 +18,7 @@ let Main = () => {
     };
   }, []);
 
-  let map = (
+  const map = (
     value: number,
     inMin: number,
     inMax: number,
@@ -28,7 +28,7 @@ let Main = () => {
     return ((value - inMin) * (outMax - outMin)) / (inMax - inMin) + outMin;
   };
 
-  let checkSize = () => {
+  useEffect(() => {
     const centerX = window.innerWidth / 2;
     const centerY = window.innerHeight / 2;
     const distance = Math.sqrt(
@@ -36,15 +36,9 @@ let Main = () => {
     );
     const minSize = 0;
     const maxSize = 200;
-    // Clamp distance to effectRadius
     const clampedDistance = Math.min(distance, 200);
-    // Invert the mapping so size is max at center, min at edge of effectRadius
     const newSize = map(clampedDistance, 0, 200, maxSize, minSize);
     setSize(newSize);
-  };
-
-  useEffect(() => {
-    checkSize();
   }, [mp]);
 
   console.log(mp);
